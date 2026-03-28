@@ -1,0 +1,19 @@
+/*
+ * Problem  : 122. Best Time to Buy and Sell Stock II
+ * Difficulty: Medium
+ * Topics   : Array, Dynamic Programming, Greedy
+ * URL      : https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+ */
+
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int res=0;
+        for(int i=1;i<prices.size();i++){
+            if(prices[i]>prices[i-1]){
+                res+=prices[i]-prices[i-1];
+            }
+        }
+        return res;
+    }
+};
