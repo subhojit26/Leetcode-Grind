@@ -7,24 +7,23 @@
 
 class Solution {
 public:
-    int dfs(vector<vector<int>> &adj, vector<int> &vis,int from){
-        int change=0;
+    int dfs(vector<vector<int>> &adj, vector<int> &vis, int from){
+        int count=0;
         vis[from]=1;
-        for(auto to:adj[from]){
-            if(!vis[abs(to)]){
-                change+=dfs(adj,vis,abs(to))+(to>0);
+        for(auto it:adj[from]){
+            if(!vis[abs(it)]){
+                count+=dfs(adj,vis,abs(it))+(it>0);
             }
         }
-        return change;
+        return count;
     }
     int minReorder(int n, vector<vector<int>>& connections) {
-        vector<vector<int>> adj(n);
-        for(int i=0;i<connections.size();i++){
-            adj[connections[i][0]].push_back(connections[i][1]);
-            adj[connections[i][1]].push_back(-connections[i][0]);
-        }
         vector<int> vis(n,0);
+        vector<vector<int>> adj(n);
+        for(auto it:connections){
+            adj[it[0]].push_back(it[1]);
+            adj[it[1]].push_back(-it[0]);
+        }
         return dfs(adj,vis,0);
-        
     }
 };
