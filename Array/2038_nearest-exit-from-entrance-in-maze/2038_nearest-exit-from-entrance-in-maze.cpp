@@ -19,7 +19,7 @@ public:
         vis[entry_row][entry_col]=1;
         vector<int> dr={-1,1,0,0};
         vector<int> dc={0,0,-1,1};
-        int minDist=n+1;
+        int minDist=n*n;
 
         while(!q.empty()){
             int row=q.front().first.first;
@@ -40,6 +40,6 @@ public:
                 }
             }
         }
-        return minDist==n+1?-1:minDist;
+        return minDist==n*n?-1:minDist;
     }
 };
