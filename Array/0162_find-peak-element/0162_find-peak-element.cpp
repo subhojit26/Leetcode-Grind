@@ -11,6 +11,9 @@ public:
         int n=nums.size();
         int low=0;
         int high=n-1;
+        if(n==1){
+            return 0;
+        }
         while(low<=high){
             int mid=(low+high)/2;
             if(mid==0 && nums[mid]>nums[mid+1]){
