@@ -20,7 +20,7 @@ public:
         if(dp[n]!=-1){
             return dp[n];
         }
-        return solver(n-1,dp)+solver(n-2,dp)+solver(n-3,dp);
+        return dp[ind]=solver(n-1,dp)+solver(n-2,dp)+solver(n-3,dp);
     }
     int tribonacci(int n) {
         vector<int> dp(n+1,-1);
