@@ -7,7 +7,7 @@
 
 class Solution {
 public:
-    int solver(int i, int j, string text1, string text2, vector<vector<int>> &dp){
+    int solver(int i, int j, string &text1, string &text2, vector<vector<int>> &dp){
         if(i<0 || j<0){
             return 0;
         }
