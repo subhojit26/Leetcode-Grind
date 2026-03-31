@@ -32,6 +32,6 @@ public:
             return n;
         }
         vector<vector<int>> dp(n+1,vector<int>(m,-1));
-        return solver(n-1,m-1,word1,word2,dp)+1;
+        return solver(n-1,m-1,word1,word2,dp);
     }
 };
