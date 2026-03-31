@@ -20,12 +20,18 @@ public:
         if(word1[i]==word2[j]){
             return dp[i][j]=solver(i-1,j-1,word1,word2,dp);
         }
-        return dp[i][j]=1+min(solver(i-1,j,word1,word2,dp),min(solver(i,j-1,word1,word2,dp),solver(i-1,j-1,word1,word2,dp)));
+        return dp[i][j]=1+min(solver(i-1,j-1,word1,word2,dp),min(solver(i-1,j,word1,word2,dp),solver(i,j-1,word1,word2,dp)));
     }
     int minDistance(string word1, string word2) {
         int n=word1.length();
         int m=word2.length();
-        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
-        return solver(n-1,m-1, word1, word2,dp);
+        if(n==0){
+            return m;
+        }
+        if(m==0){
+            return n;
+        }
+        vector<vector<int>> dp(n+1,vector<int>(m,-1));
+        return solver(n-1,m-1,word1,word2,dp)+1;
     }
 };
