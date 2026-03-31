@@ -7,7 +7,7 @@
 
 class Solution {
 public:
-    int solver(int n){
+    int solver(int n,vector<int> &dp){
         if(n<=0){
             return 0;
         }
@@ -17,9 +17,13 @@ public:
         if(n==2){
             return 1;
         }
-        return solver(n-1)+solver(n-2)+solver(n-3);
+        if(dp[n]!=-1){
+            return dp[n];
+        }
+        return solver(n-1,dp)+solver(n-2,dp)+solver(n-3,dp);
     }
     int tribonacci(int n) {
-        return solver(n);
+        vector<int> dp(n+1,-1);
+        return solver(n,dp);
     }
 };
