@@ -7,24 +7,21 @@
 
 class Solution {
 public:
-    int solver(int i, int j, string &s1, string &s2, vector<vector<int>> &dp){
+    int solver(int i, int j, string text1, string text2){
         if(i<0 || j<0){
             return 0;
         }
-        if(dp[i][j]!=-1){
-            return dp[i][j];
-        }
 
-        if(s1[i]==s2[j]){
-            return dp[i][j]= 1+solver(i-1,j-1,s1,s2,dp);
+        if(text1[i]==text2[j]){
+            cout<<text1[i];
+            return 1+solver(i-1,j-1,text1,text2);
         }
-        return dp[i][j]= max(solver(i-1,j,s1,s2,dp),solver(i,j-1,s1,s2,dp));
-
+        return max(solver(i-1,j,text1,text2),solver(i,j-1,text1,text2));
     }
     int longestCommonSubsequence(string text1, string text2) {
         int n=text1.length();
         int m=text2.length();
-        vector<vector<int>> dp(n+1, vector<int> (m+1,-1));
-        return solver(n-1,m-1,text1,text2,dp);
+
+        return solver(n-1,m-1,text1,text2);
     }
 };
