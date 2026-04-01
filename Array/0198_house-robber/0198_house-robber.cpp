@@ -7,20 +7,16 @@
 
 class Solution {
 public:
-    int solve(int ind, vector<int> nums, int n, vector<int> &dp){
-        if(ind>=n){
+    int solver(int ind, vector<int> &nums){
+        if(ind>=nums.size()){
             return 0;
         }
-        if(dp[ind]!=-1){
-            return dp[ind];
-        }
 
-        return dp[ind]=max(nums[ind]+solve(ind+2,nums,n,dp),solve(ind+1,nums,n,dp));
+        int take=nums[ind]+solver(ind+2,nums);
+        int notTake=solver(ind+1,nums);
+        return max(take,notTake);
     }
     int rob(vector<int>& nums) {
-        int ind=0;
-        int n=nums.size();
-        vector<int> dp(n+1,-1);
-        return solve(ind,nums,n,dp);
+        return solver(0,nums);
     }
 };
