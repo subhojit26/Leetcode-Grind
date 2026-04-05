@@ -9,12 +9,12 @@ class Solution {
 public:
     long long maxScore(vector<int>& nums1, vector<int>& nums2, int k) {
         vector<pair<int, int>> v;
-        int n=nums1.size();
+        int n = nums1.size();
         for (int i = 0; i < n; i++) {
             v.push_back({nums2[i], nums1[i]});
         }
 
-        sort(v.rbegin(), v.rend()); // sort by nums2 DESC
+        sort(v.rbegin(), v.rend());
 
         priority_queue<int, vector<int>, greater<int>> minHeap;
 
@@ -35,4 +35,4 @@ public:
         }
         return ans;
     }
-    };
+};
