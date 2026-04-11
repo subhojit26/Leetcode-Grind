@@ -8,13 +8,14 @@
 class Solution {
 public:
     void solver(int sum, int ind, vector<int> temp, int k, int n, set<vector<int>> &res){
-        if(ind>9){
-            return;
-        }
+        
         if(temp.size()==k){
             if(sum==n){
                 res.insert(temp);
             }
+            return;
+        }
+        if(ind>9){
             return;
         }
 
