@@ -7,19 +7,23 @@
 
 class Solution {
 public:
-    int solver(int i, int n, bool flag){
+    int solver(int i, int n, bool flag,vector<vector<int>> &dp){
         if(i==n){
             return !flag;
         }
         if(i>n){
             return 0;
         }
-        if(flag){
-            return (solver(i+1,n,true)+solver(i+1,n,false))%1000000007;
+        if(dp[i][flag]!=-1){
+            return dp[i][flag];
         }
-        return (solver(i+1,n,false)+solver(i+2,n,false)+2L*solver(i+2,n,true))%1000000007;
+        if(flag){
+            return dp[i][flag]=(solver(i+1,n,true,dp)+solver(i+1,n,false,dp))%1000000007;
+        }
+        return dp[i][flag]=(solver(i+1,n,false,dp)+solver(i+2,n,false,dp)+2L*solver(i+2,n,true,dp))%1000000007;
     }
     int numTilings(int n) {
-        return solver(0,n,false);
+        vector<vector<int>> dp(n,vector<int>(2,-1));
+        return solver(0,n,false,dp);
     }
 };
