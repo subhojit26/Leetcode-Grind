@@ -17,7 +17,7 @@ public:
         if(flag){
             return (solver(i+1,n,true)+solver(i+1,n,false))%1000000007;
         }
-        return (solver(i+1,n,false)+2L*solver(i+2,n,true))%1000000007;
+        return (solver(i+1,n,false)+solver(i+2,n,false)+2L*solver(i+2,n,true))%1000000007;
     }
     int numTilings(int n) {
         return solver(0,n,false);
