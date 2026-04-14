@@ -5,7 +5,9 @@
  * URL      : https://leetcode.com/problems/search-suggestions-system/
  */
 
-vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
+class Solution {
+public:
+    vector<vector<string>> suggestedProducts(vector<string>& products, string searchWord) {
         int n=products.size();
         sort(products.begin(),products.end());
         vector<vector<string>>ans;
@@ -25,3 +27,4 @@ vector<vector<string>> suggestedProducts(vector<string>& products, string search
         }
         return ans;
     }
+};
