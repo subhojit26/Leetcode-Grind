@@ -8,10 +8,17 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        if (magazine.find(ransomNote) != std::string::npos) {
-            return true;
-        } else {
-            return false;
+        unordered_map<char,int> mp;
+
+        for(char ch:magazine){
+            mp[ch]++;
         }
+        for(char ch:ransomNote){
+            if(mp[ch]==0){
+                return false;
+            }
+            mp[ch]--;
+        }
+        return true;
     }
 };
