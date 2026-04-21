@@ -6,70 +6,74 @@
  */
 
 class LRUCache {
-public:
+    public:
     struct Node{
-        int key, value;
-        Node* next, *prev;
+        int key;
+        int val;
+        Node* next;
+        Node* prev;
 
         Node(int k, int v){
             key=k;
-            value=v;
+            val=v;
             next=nullptr;
             prev=nullptr;
         }
     };
-
     int cap;
-    unordered_map<int, Node*> m;
     Node* head=new Node(-1,-1);
     Node* tail=new Node(-1,-1);
+    unordered_map<int, Node*> mp;
     LRUCache(int capacity) {
         cap=capacity;
         head->next=tail;
         tail->prev=head;
     }
 
-    void addNodeAtFront(Node* newNode){
+    void addNodeAtFront(Node* node){
         Node* temp=head->next;
-        newNode->next=temp;
-        temp->prev=newNode;
-        newNode->prev=head;
-        head->next=newNode;
+        node->next=temp;
+        temp->prev=node;
+        head->next=node;
+        node->prev=head;
     }
 
     void deleteNode(Node* node){
-        Node* prevNode=node->prev;
         Node* nextNode=node->next;
+        Node* prevNode=node->prev;
 
         prevNode->next=nextNode;
         nextNode->prev=prevNode;
     }
     
     int get(int key) {
-        if(m.find(key)!=m.end()){
-            Node* node=m[key];
-            int res=node->value;
-            m.erase(key);
+        if(mp.find(key)!=mp.end()){
+            int res=mp[key]->val;
+            Node* node=mp[key];
+            mp.erase(key);
+
             deleteNode(node);
             addNodeAtFront(node);
-            m[key]=head->next;
+            mp[key]=head->next;
             return res;
+        }else{
+            return -1;
         }
-        return -1;
     }
     
     void put(int key, int value) {
-        if(m.find(key)!=m.end()){
-            Node* node=m[key];
-            m.erase(key);
+        if(mp.find(key)!=mp.end()){
+            Node* node=mp[key];
+            mp.erase(key);
             deleteNode(node);
         }
-        if(m.size()==cap){
-            m.erase(tail->prev->key);
+        if(mp.size()==cap){
+            mp.erase(tail->prev->key);
             deleteNode(tail->prev);
         }
-        addNodeAtFront(new Node(key, value));
-        m[key]=head->next;
+
+        addNodeAtFront(new Node(key,value));
+        mp[key]=head->next;
     }
 };
 
