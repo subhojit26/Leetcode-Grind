@@ -19,20 +19,25 @@
 class Solution {
 public:
     bool solver(TreeNode* p, TreeNode* q){
+        if(p!=NULL && q!=NULL){
+            if(p->val!=q->val){
+                return false;
+            }
+        }
         if(p==NULL && q==NULL){
             return true;
         }
         if(p==NULL || q==NULL){
             return false;
         }
-        if(p->val!=q->val){
-            return false;
-        }
+        cout<<"p="<<p->val<<" q="<<q->val;
+        
 
-        return solver(p->left, q->right)||solver(p->right, q->left);
+        return solver(p->left, q->right)&&solver(p->right, q->left);
 
     }
     bool isSymmetric(TreeNode* root) {
+
         return solver(root->left, root->right);
 
     }
