@@ -18,19 +18,16 @@
  */
 class Solution {
 public:
-    int solver(TreeNode* root, int &mx){
+    int solver(TreeNode* root){
         if(root==NULL){
             return 0;
         }
+        int leftHeight=1+solver(root->left);
+        int rightHeight=1+solver(root->right);
 
-        int left=1+solver(root->left,mx);
-        int right=1+solver(root->right,mx);
-        mx=max(left,right);
-        return max(left,right);
+        return max(leftHeight, rightHeight);
     }
     int maxDepth(TreeNode* root) {
-        int mx=0;
-        solver(root,mx);
-        return mx;
+        return solver(root);
     }
 };
