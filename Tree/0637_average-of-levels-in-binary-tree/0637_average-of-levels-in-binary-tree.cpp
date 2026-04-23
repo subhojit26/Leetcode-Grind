@@ -46,7 +46,7 @@ public:
             for(auto pt:it.second){
                 temp.push_back(pt);
             }
-            int sum=accumulate(temp.begin(),temp.end(),0);
+            long long sum=accumulate(temp.begin(),temp.end(),(long long)0);
             double average=(double)sum/temp.size();
             ans.push_back(average);
         }
