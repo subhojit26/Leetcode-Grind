@@ -18,46 +18,30 @@
  */
 class Solution {
 public:
-    int findHeight(TreeNode* root){
-        if(root==NULL){
-            return 0;
-        }
-        int left=1+findHeight(root->left);
-        int right=1+findHeight(root->right);
-
-        return max(left,right);
-
-    }
     vector<int> rightSideView(TreeNode* root) {
         if(root==NULL){
             return {};
         }
-        queue<pair<TreeNode*,int>> q;
-        unordered_map<int,TreeNode*> mp;
-
-        q.push({root,0});
+        queue<pair<int, TreeNode*>> q;
+        map<int, TreeNode*> mp;
+        q.push({0,root});
+        mp[0]=root;
         while(!q.empty()){
-            TreeNode* node=q.front().first;
-            int level=q.front().second;
-
-            int s=q.size();
+            int level=q.front().first;
+            TreeNode* node=q.front().second;
             q.pop();
+
             mp[level]=node;
-    
             if(node->left){
-                q.push({node->left,level+1});
+                q.push({level+1,node->left});
             }
             if(node->right){
-                q.push({node->right,level+1});
+                q.push({level+1,node->right});
             }
-            
         }
-        int mx=INT_MIN;
-        int h=findHeight(root);
-
         vector<int> ans;
-        for(int i=0;i<h;i++){
-            ans.push_back(mp[i]->val);
+        for(auto it:mp){
+            ans.push_back(it.second->val);
         }
         return ans;
     }
