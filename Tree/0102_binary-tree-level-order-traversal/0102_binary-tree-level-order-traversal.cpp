@@ -18,34 +18,36 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root, vector<vector<int>> &ans){
-        queue<TreeNode*> q;
-        if(root==NULL){
-            return;
-        }
-        q.push(root);
-        
-        while(!q.empty()){
-            int s=q.size();
-            vector<int> level;
-
-            while(s--){
-                TreeNode* node=q.front();
-                q.pop();
-
-                level.push_back(node->val);
-
-                if(node->left) q.push(node->left);
-                if(node->right) q.push(node->right);
-            }
-
-            ans.push_back(level);
-        }
-        return;
-    }
     vector<vector<int>> levelOrder(TreeNode* root) {
+        if(root==NULL){
+            return {};
+        }
+        queue<pair<int, TreeNode*>> q;
+        map<int,vector<int>> mp;
         vector<vector<int>> ans;
-        solve(root,ans);
+        q.push({0,root});
+
+        while(!q.empty()){
+            int level=q.front().first;
+            TreeNode* node=q.front().second;
+
+            q.pop();
+
+            mp[level].push_back(node->val);
+            if(node->left){
+                q.push({level+1,node->left});
+            }
+            if(node->right){
+                q.push({level+1,node->right});
+            }
+        }
+        for(auto it:mp){
+            vector<int> temp;
+            for(auto pt:it.second){
+                temp.push_back(pt);
+            }
+            ans.push_back(temp);
+        }
         return ans;
     }
 };
