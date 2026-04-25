@@ -7,7 +7,7 @@
 
 class Solution {
 public:
-    bool dfs(int it, int i, int j, vector<vector<int>> vis, int m, int n, vector<vector<char>> &board, string word, vector<int> dr, vector<int> dc){
+    bool dfs(int it, int i, int j, vector<vector<int>> &vis, int m, int n, vector<vector<char>> &board, string &word, vector<int> &dr, vector<int> &dc){
         if(it==word.length()){
             return true;
         }
