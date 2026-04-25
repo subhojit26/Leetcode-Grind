@@ -11,6 +11,10 @@ public:
         if(it>word.length()){
             return false;
         }
+        if(word.length()==1 && board[i][j]==word[it]){
+            return true;
+        }
+
         vis[i][j]=1;
         if(temp==word){
             return true;
