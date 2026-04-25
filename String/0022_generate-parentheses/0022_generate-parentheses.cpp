@@ -11,8 +11,10 @@ public:
         if(o==c && o+c==2*n){
             ans.push_back(temp);
         }
+        cout<<temp<<" ";
+
         if(o<n){
-            solver(o+1,c,n,temp+"(",ans);
+            solver(o+1, c, n, temp+"(", ans);
         }
         if(c<o){
             solver(o,c+1,n,temp+")",ans);
@@ -20,9 +22,8 @@ public:
     }
     vector<string> generateParenthesis(int n) {
         string temp="";
-        vector<string>ans;
+        vector<string> ans;
         solver(0,0,n,temp,ans);
         return ans;
-
     }
 };
