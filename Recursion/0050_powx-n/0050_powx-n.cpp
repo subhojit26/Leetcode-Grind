@@ -7,7 +7,7 @@
 
 class Solution {
 public:
-    double solver(double x, int n){
+    double solver(double x, long long n){
         if(n==0){
             return 1.0;
         }
@@ -23,7 +23,7 @@ public:
         }
     }
     double myPow(double x, int n) {
-        return solver(x, n);
+        return solver(x, (long long)n);
 
     }
 };
