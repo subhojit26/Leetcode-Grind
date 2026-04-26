@@ -8,29 +8,30 @@
 class Solution {
 public:
     int kadane(vector<int> nums){
-        int maxi=INT_MIN;
-        int curr=0;
+        int sum=0;
+        int mx=INT_MIN;
         for(int i=0;i<nums.size();i++){
-            curr+=nums[i];
-            maxi=max(maxi,curr);
-            if(curr<0){
-                curr=0;
+            sum+=nums[i];
+            mx=max(sum,mx);
+            if(sum<0){
+                sum=0;
             }
         }
-        return maxi;
+        return mx;
     }
     int maxSubarraySumCircular(vector<int>& nums) {
-        int nonCircularSum=kadane(nums);
+        int ncSum=kadane(nums);
         int totalSum=0;
         for(int i=0;i<nums.size();i++){
             totalSum+=nums[i];
             nums[i]=-nums[i];
         }
-        int circularSum=totalSum+kadane(nums);
-        if(circularSum==0){
-            return nonCircularSum;
+        int cSum=totalSum+kadane(nums);
+        if(cSum==0){
+            return ncSum;
         }
-        
-        return max(circularSum,nonCircularSum); 
+        cout<<totalSum<<" ";
+        cout<<cSum<<" "<<ncSum<<" ";
+        return max(cSum,ncSum);
     }
 };
