@@ -13,10 +13,11 @@ public:
 
         for(int i=0;i<nums.size();i++){
             sum+=nums[i];
+            mx=max(mx,sum);
             if(sum<0){
                 sum=0;
             }
-            mx=max(mx,sum);
+            
         }
         return mx;
     }
