@@ -33,22 +33,22 @@ public:
         if(head==NULL || head->next==NULL){
             return head;
         }
-        ListNode* temp1=head;
-        ListNode* temp2=head;
-        ListNode* temp3=head;
-        ListNode* temp4=head;
+        ListNode* dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* temp1=dummy;
+        ListNode* temp2=dummy;
 
-        for(int i=1;i<left-1;i++){
+        for(int i=1;i<left;i++){
             temp1=temp1->next;
         }
 
-        for(int i=1;i<right;i++){
+        for(int i=1;i<=right;i++){
             temp2=temp2->next;
         }
 
-        temp3=temp1->next;
+        ListNode* temp3=temp1->next;
         temp1->next=NULL;
-        temp4=temp2->next;
+        ListNode* temp4=temp2->next;
         temp2->next=NULL;
 
         ListNode* temp5=reverse(temp3);
@@ -58,6 +58,6 @@ public:
             temp5=temp5->next;
         }
         temp5->next=temp4;
-        return head;
+        return dummy->next;
     }
 };
