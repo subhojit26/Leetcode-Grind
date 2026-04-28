@@ -13,7 +13,7 @@ public:
 
         int l=0;
         int r=0;
-        int res=INT_MIN;
+        int res=-1;
         while(r<len){
             mp[s[r]]++;
             while(mp[s[r]]>1 && l<=r){
@@ -23,6 +23,6 @@ public:
             res=max(res,r-l+1);
             r++;
         }
-        return res;
+        return (res==-1)?0:res;
     }
 };
