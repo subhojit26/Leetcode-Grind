@@ -32,7 +32,7 @@ public:
                 }
             }else{
                 string temp="";
-                while(l<len && path[l]!='/' && path[l]!='.'){
+                while(l<len && path[l]!='/'){
                     temp=temp+path[l];
                     l++;
                 }
