@@ -14,17 +14,20 @@ public:
         int lmax=INT_MIN;
         int rmax=INT_MIN;
         int cap=0;
-        while(l<=r){
+
+        while(l<r){
             if(height[l]<height[r]){
                 if(height[l]>lmax){
                     lmax=height[l];
                     cap=max(cap,min(height[l],height[r])*(r-l));
+                    //cout<<cap<<" ";
                 }
                 l++;
             }else{
                 if(height[r]>rmax){
                     rmax=height[r];
                     cap=max(cap,min(height[l],height[r])*(r-l));
+                    // cout<<cap<<" ";
                 }
                 r--;
             }
