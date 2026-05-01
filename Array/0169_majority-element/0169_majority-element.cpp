@@ -19,6 +19,7 @@ public:
             }
             if(freq<0){
                 ele=nums[i];
+                freq=1;
             }
         }
         int c=0;
