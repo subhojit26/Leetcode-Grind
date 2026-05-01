@@ -10,23 +10,23 @@ public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
         int m=matrix.size();
         int n=matrix[0].size();
+
         for(int i=0;i<m;i++){
-            vector<int>curr=matrix[i];
-            if(target>=curr[0] && target<=curr[n-1]){
-                int left=0;
-                int right=n-1;
-                while(left<=right){
-                    int mid=(left+right)/2;
-                    if(curr[mid]==target){
+            int low=matrix[i][0];
+            int high=matrix[i][n-1];
+            if(target>=low && target<=high){
+                int l=0;
+                int h=m-1;
+                while(l<=h){
+                    int mid=(l+h)/2;
+                    if(matrix[i][mid]==target){
                         return true;
-                    }else if(curr[mid]<target){
-                        left=mid+1;
+                    }else if(matrix[i][mid]>target){
+                        h=mid-1;
                     }else{
-                        right=mid-1;
+                        l=mid+1;
                     }
                 }
-            }else if(target>curr[n-1]){
-                continue;
             }
         }
         return false;
