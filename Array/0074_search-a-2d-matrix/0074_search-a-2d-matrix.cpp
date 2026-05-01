@@ -16,7 +16,7 @@ public:
             int high=matrix[i][n-1];
             if(target>=low && target<=high){
                 int l=0;
-                int h=m-1;
+                int h=n-1;
                 while(l<=h){
                     int mid=(l+h)/2;
                     if(matrix[i][mid]==target){
