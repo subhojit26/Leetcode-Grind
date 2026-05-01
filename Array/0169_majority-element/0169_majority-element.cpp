@@ -8,10 +8,10 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int ele;
-        int freq=0;
+        int ele=nums[0];
+        int freq=1;
         int n=nums.size();
-        for(int i=0;i<n;i++){
+        for(int i=1;i<n;i++){
             if(nums[i]==ele){
                 freq++;
             }else{
