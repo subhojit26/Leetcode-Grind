@@ -26,6 +26,9 @@ public:
         return l;
     }
     ListNode* rotateRight(ListNode* head, int k) {
+        if(head==NULL || head->next==NULL){
+            return head;
+        }
         ListNode* temp=head;
         int len=findLength(temp);
         k=k%len;
