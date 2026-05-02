@@ -8,19 +8,18 @@
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int n=gas.size();
-        int surplus=0;
-        int total_surplus=0;
-        int start=0;
-        for(int i=0;i<n;i++){
-            total_surplus+=gas[i]-cost[i];
-            surplus+=gas[i]-cost[i];
-            if(surplus<0){
-                surplus=0;
-                start=i+1;
-            }
-
+        if(accumulate(gas.begin(),gas.end(),0)<accumulate(cost.begin(),cost.end(),0)){
+            return -1;
         }
-        return (total_surplus<0)?-1:start;
+        int total=0;
+        int res=0;
+        for(int i=0;i<gas.size();i++){
+            total+=gas[i]-cost[i];
+            if(total<0){
+                total=0;
+                res=i+1;
+            }
+        }
+        return res;
     }
 };
