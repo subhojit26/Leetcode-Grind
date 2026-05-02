@@ -17,29 +17,30 @@
  */
 class Solution {
 public:
+    int findLength(ListNode* temp){
+        int l=0;
+        while(temp!=NULL){
+            l++;
+            temp=temp->next;
+        }
+        return l;
+    }
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head==NULL || head->next==NULL){
-            return head;
-        }
         ListNode* temp=head;
-        ListNode* last;
-        int count=0;
-        while(temp->next!=NULL){
-            temp=temp->next;
-            count++;
+        int len=findLength(temp);
+        k=k%len;
+        ListNode* tail=head;
+        while(tail->next!=NULL){
+            tail=tail->next;
         }
-        count++;
-        last=temp;
-        temp=head;
-        k=k%count;
-        count=count-k;
-        while(count>1){
-            count--;
+
+        int d=len-k;
+        for(int i=1;i<d;i++){
             temp=temp->next;
         }
-        last->next=head;
-        head=temp->next;
+        ListNode* newHead=temp->next;
         temp->next=NULL;
-        return head;
+        tail->next=head;
+        return newHead;
     }
 };
