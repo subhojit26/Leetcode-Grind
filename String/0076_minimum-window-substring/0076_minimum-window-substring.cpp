@@ -8,42 +8,46 @@
 class Solution {
 public:
     string minWindow(string s, string t) {
-        map<char,int> mp;
-        int i=0;
-        int j=0;
+        unordered_map<char, int> need;
+        unordered_map<char, int> window;
         int ls=s.length();
         int lt=t.length();
-        int start=0;
-        int minLen=INT_MAX;
+        int count=0;
+
         for(int i=0;i<lt;i++){
-            mp[t[i]]++;
+            need[t[i]]++;
         }
-        int count=mp.size();
-        while(j<ls){
-            if(mp.find(s[j])!=mp.end()){
-                mp[s[j]]--;
-                if(mp[s[j]]==0){
-                    count--;
+        int required=need.size();
+        int l=0;
+        int res=INT_MAX;
+        int r=0;
+        int start = 0;
+        while(r<ls){
+            char c = s[r];
+            if(need.count(c)){
+                window[c]++;
+                if(window[c]==need[c]){
+                    count++;
                 }
             }
-            while(count==0){
-                if(mp.find(s[i])!=mp.end()){
-                    mp[s[i]]++;
-                    if(mp[s[i]]==1){
-                        count++;
-                        if(j-i+1<minLen){
-                            minLen=j-i+1;
-                            start=i;
-                        }
+            
+            while(count==required){
+                if(r-l+1<res){
+                    start=l;
+                    res=r-l+1;
+                }
+                char lChar=s[l];
+                if(need.count(lChar)){
+                    window[lChar]--;
+                    if(window[lChar] < need[lChar]){
+                        count--;
                     }
                 }
-                i++;
+                l++;
             }
-            j++;
+            r++;
         }
-        if(minLen==INT_MAX){
-            return "";
-        }
-        return s.substr(start,minLen);
+
+       return res == INT_MAX ? "" : s.substr(start, res);
     }
 };
