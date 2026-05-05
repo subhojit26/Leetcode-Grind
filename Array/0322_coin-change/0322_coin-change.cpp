@@ -7,7 +7,7 @@
 
 class Solution {
 public:
-    int solver(int ind, int n, vector<int> coins, int amount, vector<vector<int>> &dp){
+    int solver(int ind, int n, vector<int> &coins, int amount, vector<vector<int>> &dp){
         if(amount==0){
             return 0;
         }
