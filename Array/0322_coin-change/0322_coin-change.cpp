@@ -21,7 +21,6 @@ public:
         int take=1e9;
         if(coins[ind]<=amount){
             take=1+solver(ind,n,coins,amount-coins[ind],dp);
-            cout<<take<<" ";
         }
         int notTake=solver(ind+1,n,coins,amount,dp);
         return dp[ind][amount]=min(take,notTake);
